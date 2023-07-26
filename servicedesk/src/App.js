@@ -1,4 +1,4 @@
-import {BrowserRouter,Routes,Link} from 'react-router-dom';
+import { Routes,Route, Link } from "react-router-dom"
 import './App.css';
 
 //components
@@ -9,18 +9,18 @@ import UpdateIncident from './components/UpdateIncident';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+    
         <nav> 
           <h1>Incident Management System</h1>
           <Link to="/">Home</Link>
           <Link to="/create">Create Incident</Link>
         </nav>
         <Routes>
-          <Home path="/" element = {<Home/>}/>
-          <CreateIncident path="/create" element = {<CreateIncident/>}/>
-          <Incident path="/incident/:id" element = {<UpdateIncident/>}/>
+          <Route path="/" element = {<Home/>}/>
+          <Route path="/create" element = {<CreateIncident/>}/>
+          <Route path="/UpdateIncident/:id" element = {<UpdateIncident/>}/>
         </Routes>
-      </BrowserRouter>
+    
     </div>
   );
 }

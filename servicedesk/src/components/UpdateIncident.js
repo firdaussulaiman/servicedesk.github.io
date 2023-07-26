@@ -5,3 +5,5 @@ const UpdateIncident = () => {
         </div>
     )
 }
+
+export default UpdateIncident;
