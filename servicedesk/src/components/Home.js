@@ -1,4 +1,7 @@
+import supabase from '../config/supabaseClient'
+
 const Home = () => {
+    console.log(supabase)
     return (
         <div className="home">
             <h2>Incident List</h2>
