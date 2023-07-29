@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
+import {useNavigate }   from 'react-router-dom';
 import supabase from '../config/supabaseClient';
 
+
 const CreateIncident = () => {
-const [incidentName, setIncidentName] = useState('');
-const [incidentDescrp, setIncidentDesrp] = useState('');
-const [incidentPriority, setincidentPriority] = useState('');
-const [incidentStatus, setincidentStatus] = useState('');
-const [incidentDate, setincidentDate] = useState('');
+const Navigate = useNavigate();
+const [IncidentName, setIncidentName] = useState('');
+const [IncidentDescription, setIncidentDescription] = useState('');
+const [IncidentPriority ,setIncidentPriority] = useState('');
+const [IncidentStatus, setIncidentStatus] = useState('');
+const [IncidentDate, setIncidentDate] = useState('');
 const [formErrors, setFormErrors] = useState(null);
 
 const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!incidentName || !incidentDescrp || !incidentPriority || !incidentStatus || !incidentDate) {
+    if (!IncidentName || !IncidentDescription || !IncidentPriority || !IncidentStatus|| !IncidentDate) {
         setFormErrors('Please enter all fields');
     return 
     }
-
     const {data,error} = await supabase
-    .from('incidents')
-    .insert([{incidentName,incidentDescrp,incidentPriority,incidentStatus,incidentDate}]);
+    .from('IncidentList')
+    .insert([{IncidentName,IncidentDescription,IncidentPriority,IncidentStatus,IncidentDate}]);
     
     if (error) {
         console.log(error);
@@ -28,6 +30,7 @@ const handleSubmit = async (e) => {
     if (data) {
         console.log(data);
         setFormErrors(null);
+        return <Navigate to="/test" />;//redirect to home page
      
     }
 
@@ -40,44 +43,44 @@ return (
                 <input 
                 type="text"
                 id="incident"
-                value={incidentName}
+                value={IncidentName}
                 onChange={(e) => setIncidentName(e.target.value)}
                 />
-                <label htmlFor='incidentDescrp'>Incident Description:</label>
+                <label htmlFor='IncidentDescription'>Incident Description:</label>
                 <input 
                 type="text"
-                id="incidentDescrp"
-                value={incidentDescrp}
-                onChange={(e) => setIncidentDesrp(e.target.value)}
+                id="IncidentDescription"
+                value={IncidentDescription}
+                onChange={(e) => setIncidentDescription(e.target.value)}
                 />
-                <label htmlFor='incidentPriority'>Incident Priority:</label>
+                <label htmlFor='IncidentPriority'>Incident Priority:</label>
                 <select
-                name="incidentPriority"
-                id="incidentPriority"
-                value={incidentPriority}
-                onChange={(e) => setincidentPriority(e.target.value)}
+                name="IncidentPriority"
+                id="IncidentPriority"
+                value={IncidentPriority}
+                onChange={(e) => setIncidentPriority(e.target.value)}
                 >
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
                     <option value="high">High</option>
                     <option value="critical">Critical</option>
                 </select>
-                <label htmlFor='incidentStatus'>Incident Status:</label>
+                <label htmlFor='IncidentStatus'>Incident Status:</label>
                 <select
-                name="incidentStatus"
-                id="incidentStatus"
-                value={incidentStatus}
-                onChange={(e) => setincidentStatus(e.target.value)}
+                name="IncidentStatus"
+                id="IncidentStatus"
+                value={IncidentStatus}
+                onChange={(e) => setIncidentStatus(e.target.value)}
                 >
                     <option value="open">Open</option>
                     <option value="closed">Closed</option>
                 </select>
-              <label htmlFor='incidentDate'>Incident Date:</label>
+              <label htmlFor='IncidentDate'>Incident Date:</label>
                 <input
                 type="date"
-                id="incidentDate"
-                value={incidentDate}
-                onChange={(e) => setincidentDate(e.target.value)}
+                id="IncidentDate"
+                value={IncidentDate}
+                onChange={(e) => setIncidentDate(e.target.value)}
                 />
                 <button>Add Incident</button>
                 {formErrors && <p className="error">{formErrors}</p>}
