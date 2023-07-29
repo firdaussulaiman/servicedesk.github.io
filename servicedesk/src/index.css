@@ -32,3 +32,37 @@ nav h1 {
   margin: 20px auto;
   padding: 20px;
 }
+/* incident-grid*/
+
+.Incident-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1 fr 1fr 1fr;  
+  grid-gap: 40px;
+}
+
+.incident-card {
+  width :100%;
+  padding: 10px;
+  background: #fff;
+  box-sizing: border-box ;
+  border-radius: 6px;
+  position : relative;
+}
+
+.incident-card .IncidentDate {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--primary);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+
+}
+.incident-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}

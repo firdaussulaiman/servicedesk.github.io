@@ -2,9 +2,9 @@ import { Routes,Route, Link } from "react-router-dom"
 import './App.css';
 
 //components
-import Home from './components/Home';
-import CreateIncident from './components/CreateIncident';
-import UpdateIncident from './components/UpdateIncident';
+import Home from './title/Home';
+import CreateIncident from './title/CreateIncident';
+import UpdateIncident from './title/UpdateIncident';
 
 function App() {
   return (
