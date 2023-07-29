@@ -4,7 +4,7 @@ import supabase from '../config/supabaseClient';
 
 
 const CreateIncident = () => {
-const Navigate = useNavigate();
+const navigate = useNavigate();
 const [IncidentName, setIncidentName] = useState('');
 const [IncidentDescription, setIncidentDescription] = useState('');
 const [IncidentPriority ,setIncidentPriority] = useState('');
@@ -12,29 +12,32 @@ const [IncidentStatus, setIncidentStatus] = useState('');
 const [IncidentDate, setIncidentDate] = useState('');
 const [formErrors, setFormErrors] = useState(null);
 
-const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    if (!IncidentName || !IncidentDescription || !IncidentPriority || !IncidentStatus|| !IncidentDate) {
-        setFormErrors('Please enter all fields');
-    return 
-    }
-    const {data,error} = await supabase
-    .from('IncidentList')
-    .insert([{IncidentName,IncidentDescription,IncidentPriority,IncidentStatus,IncidentDate}]);
+    const handleSubmit = async e => {
+      e.preventDefault();
     
-    if (error) {
-        console.log(error);
+      if (!IncidentName || !IncidentDescription || !IncidentPriority || !IncidentStatus || !IncidentDate) {
         setFormErrors('Please enter all fields');
-    }
-    if (data) {
-        console.log(data);
-        setFormErrors(null);
-        return <Navigate to="/test" />;//redirect to home page
-     
-    }
-
-}
+        return;
+      }
+    
+      
+        const { data, error } = await supabase.from('IncidentList').insert([
+          { IncidentName, IncidentDescription, IncidentPriority, IncidentStatus, IncidentDate },
+        ]);
+    
+        if (error) {
+          console.log(error);
+          setFormErrors('An error occurred while creating the incident');
+        } else {
+          console.log(data);
+          setFormErrors(null);
+          console.log('Incident created successfully');
+          navigate('/');
+        }
+      };
+      
+    
 return (
         <div className="create">
             <h2>Create Incident</h2>
@@ -84,8 +87,9 @@ return (
                 />
                 <button>Add Incident</button>
                 {formErrors && <p className="error">{formErrors}</p>}
+               
             </form>
-             
+
            
         </div>
     );

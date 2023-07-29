@@ -66,3 +66,78 @@ nav h1 {
   transform: scale(1.02);
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
+
+/*forms */
+form {
+  background : #fff;
+  padding: 20px;
+  max-width: 480px;
+  margin: 0 auto;
+  border-radius: 6px;
+}
+form input, form textarea {
+  display:block;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+border:1px solid #ddd;  
+margin: 10px 0 20px;
+}
+form button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Poppins";
+  cursor: pointer;
+}
+form button:hover {
+  background: var(--secondary);
+}
+form .error {
+  color: red;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0 0;
+}
+form .success {
+  color: green;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0 0;
+}
+form .IncidentDescription {
+  height: 100px;
+  /*make text box bigger */
+  scrollbar-width: none;
+}
+
+/* incident card */
+.incident-card h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+.incident-card buttons {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Poppins";
+  cursor: pointer;
+  margin: 10px 0 0;
+  text-align: right;
+}
+.incident-card i{
+  color: var(--primary);
+  font-size: 20px;
+  margin-right: 10px;
+}

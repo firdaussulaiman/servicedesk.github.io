@@ -1,3 +1,5 @@
+import {Link }  from 'react-router-dom';
+
 const IncidentCard = ({incident}) =>{
     return (
         <div className="incident-card">
@@ -6,7 +8,13 @@ const IncidentCard = ({incident}) =>{
             <p>{incident.IncidentPriority}</p>
             <p>{incident.IncidentStatus}</p>
            <div className="IncidentDate">{incident.IncidentDate}</div>
+           <div className="buttons">
+            <Link to={'/' + incident.id}>
+                <i className='material-icons'>edit </i>
+                </Link>
+
             </div>
+        </div>
     )
 }
 
