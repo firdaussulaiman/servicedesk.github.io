@@ -3,6 +3,7 @@ import './App.css';
 
 //components
 import Home from './title/Home';
+import Dashboard from './title/dashboard';
 import CreateIncident from './title/CreateIncident';
 import UpdateIncident from './title/UpdateIncident';
 
