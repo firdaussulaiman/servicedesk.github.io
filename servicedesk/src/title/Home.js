@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import supabase from '../config/supabaseClient';
-import { Bar } from 'react-chartjs-2';
-import { Line } from 'react-chartjs-2';
+
+
 
 // Components
-import IncidentCard from '../components/IncidentCard';
+
 import IncidentTable from '../components/IncidentTable';
-import BarChart from '../components/BarChart'; // Use uppercase 'B' for BarChart
+import BarChart from '../components/BarChart';
+import LineChart from '../components/LineChart';
+
 
 
 
@@ -165,12 +167,10 @@ console.log('Rendering BarChart with data:', BarData);
           Next
         </button>
       </div>
-      <div className="BarChart">
-        <div style={{ width: 700 }}>
-          <Bar data={BarData} options={{ scales: { y: { beginAtZero: true } } }} />
-        </div>
-        <div style={{ width: 700 }}>
-          <Line data={LineData} options={{ scales: { y: { beginAtZero: true } } }} />
+      <div className="content">
+        <div className="charts">
+          <BarChart data={BarData} />
+          <LineChart data={LineData} />
         </div>
       </div>
     </div>
