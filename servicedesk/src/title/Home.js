@@ -6,6 +6,8 @@ import { Line } from 'react-chartjs-2';
 // Components
 import IncidentCard from '../components/IncidentCard';
 import IncidentTable from '../components/IncidentTable';
+import BarChart from '../components/BarChart'; // Use uppercase 'B' for BarChart
+
 
 
 const Home = () => {
@@ -13,18 +15,9 @@ const Home = () => {
   const [incidentList, setIncidentList] = useState(null);
   const [orderBy, setOrderBy] = useState('IncidentDate');
   const [currentPage, setCurrentPage] = useState(1);
-  const [incidentsPerPage] = useState(10);
+  const [incidentsPerPage] = useState(3);
 
 
-  
-  const countIncidentsByStatusAndPriority = (data, status, priority) => {
-    return data.filter(
-      (incident) =>
-        incident.IncidentStatus === status &&
-        incident.IncidentPriority === priority
-    ).length;
-  };
-  
 
   const handleDelete = (incidentId) => {
     setIncidentList((prevIncidentList) => {
@@ -32,9 +25,6 @@ const Home = () => {
     });
   };
   
-
-
-
   useEffect(() => {
     const fetchIncidentList = async () => {
       try {
@@ -66,13 +56,24 @@ const Home = () => {
   console.log('IncidentList:', incidentList);
   console.log('Current orderBy:', orderBy);
 
-  const priorityLevels = ['low', 'medium', 'high', 'critical'];
+  const countIncidentsByStatusAndPriority = (data, status, priority) => {//data is the incidentList
+    return data.filter(//filter is a function that takes a function as an argument
+      (incident) =>//incident is the argument of the function that filter takes
+        incident.IncidentStatus === status &&
+        incident.IncidentPriority === priority
+    ).length;
+  };
+console.log('countIncidentsByStatusAndPriority:', countIncidentsByStatusAndPriority);
+
+  const priorityLevels = ['Low', 'Medium', 'High', 'Critical'];
   const openCountsByPriority = priorityLevels.map((priority) =>
-    incidentList ? countIncidentsByStatusAndPriority(incidentList, 'open', priority) : 0
+    incidentList  ? countIncidentsByStatusAndPriority(incidentList, 'Open', priority) : 0
   );
   const closedCountsByPriority = priorityLevels.map((priority) =>
-    incidentList ? countIncidentsByStatusAndPriority(incidentList, 'closed', priority) : 0
+    incidentList ? countIncidentsByStatusAndPriority(incidentList, 'Closed', priority) : 0
   );
+
+  console.log('openCountsByPriority:', openCountsByPriority);
 
   // Calculate the number of pages needed
   const totalPages = Math.ceil(incidentList?.length / incidentsPerPage);
@@ -90,7 +91,7 @@ const Home = () => {
   const currentIncidents = incidentList
   ? incidentList.slice(indexOfFirstIncident, indexOfLastIncident)
   : [];
-
+  console.log('Current Incidents:', currentIncidents);
 
   const BarData = {
     labels: priorityLevels,
@@ -130,6 +131,9 @@ const Home = () => {
       },
     ],
   };
+  console.log('BarData:', BarData);
+console.log('LineData:', LineData);
+console.log('Rendering BarChart with data:', BarData);
   
 
   return (

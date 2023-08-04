@@ -1,11 +1,14 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-const BarChart = ({ chartData }) => {
+const BarChart = ({ data }) => {
   return (
-    <div className="Chart">
+    <div className="BarChart">
       <div style={{ width: 700 }}>
-        <Bar data={chartData} options={{ scales: { y: { beginAtZero: true } } }} />
+        <Bar
+          data={data}
+          options={{ scales: { y: { beginAtZero: true } } }}
+        />
       </div>
     </div>
   );
