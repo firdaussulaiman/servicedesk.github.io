@@ -1,6 +1,7 @@
 import {Link }  from 'react-router-dom';
 import supabase from '../config/supabaseClient'
 
+
 const IncidentCard = ({incident, onDelete}) =>{
     const handleDelete = async () => {
         const { data, error } = await supabase

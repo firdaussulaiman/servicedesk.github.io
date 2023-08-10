@@ -1,11 +1,11 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Pie} from 'react-chartjs-2';
 
-const BarChart = ({ data }) => {
+const PieChartCard = ({ data }) => {
   return (
     <div className="BarChart">
-      <div style={{ width: 1000 }}>
-        <Bar
+      <div style={{ width: 700 }}>
+        <Pie
           data={data}
           options={{ scales: { y: { beginAtZero: true } } }}
         />
@@ -14,4 +14,4 @@ const BarChart = ({ data }) => {
   );
 };
 
-export default BarChart;
+export default PieChartCard;

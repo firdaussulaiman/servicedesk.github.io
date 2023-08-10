@@ -1,6 +1,21 @@
-.TableofIncidents {
-  border-collapse: collapse;
-  width: 100%;
-  flex-wrap: wrap;
-  overflow: auto;
+.content {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.pagination:hover {
+  background: var(--secondary);
+}
+.pagination {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Poppins";
+  cursor: pointer;
 }

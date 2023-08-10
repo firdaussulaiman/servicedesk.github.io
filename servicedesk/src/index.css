@@ -4,15 +4,22 @@
   --primary: #12bca2;
   --secondary: #6d15df;
 }
-h1,h2,h3 {
-  margin: 0;
-}
 
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  color: #333;
-  font-family: 'Poppins';
-  background: #f2f2f2;
+  padding: 0;
+  font-family: "Poppins";
+  align-items: center;
+  
+}
+h2 {
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  
 }
 nav {
   background: var(--primary);
@@ -110,11 +117,7 @@ form .success {
   font-weight: 600;
   margin: 10px 0 0;
 }
-form .IncidentDescription {
-  height: 100px;
-  /*make text box bigger */
-  scrollbar-width: none;
-}
+
 
 /* incident card */
 .incident-card h2 {
@@ -156,11 +159,58 @@ form .IncidentDescription {
   text-align: right;
   
 }
-.TableofIncidents {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: 1 fr 1fr 1fr;  
-  grid-gap: 40px;
-  margin : 0 auto;
-  box-shadow: #333;
+.order-by button:hover {
+  background: var(--secondary);
+}
+.order-by {
+  text-align: center;
+
+}
+.IncidentTable th, .IncidentTable td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+
+}
+.IncidentTable tr:hover {
+  background-color: #ddd;
+}
+.IncidentTable table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.pagination {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 60px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 600;
+  font-family: "Poppins";
+  cursor: pointer;
+  margin: 10px 0 0;
+  text-align: right;
+}
+
+.home .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  
+}
+.home .content .Barcharts {
+  width: 50%;
+  height: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  box-sizing: border-box ;
+  border-radius: 6px;
+  position : relative;
+  border-color: #12bca2;
 }

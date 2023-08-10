@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import supabase from '../config/supabaseClient';
 import IncidentCard from './IncidentCard'; // Import the IncidentCard component
-
-const IncidentTable = ({ incidents, onDelete }) => {
+import { useNavigate } from 'react-router-dom';
+import NavBar from '../Pages/NavBar';
+const IncidentTableCard = ({ incidents, onDelete }) => {
   const handleDelete = async (id) => {
     const { data, error } = await supabase
       .from('IncidentList')
@@ -21,10 +21,15 @@ const IncidentTable = ({ incidents, onDelete }) => {
   };
 
   return (
+    <div>
+      <NavBar />
+  <div/>
     <div className="TableofIncidents">
+    
       <table>
         <thead>
           <tr>
+            <th>Incident ID</th>
             <th>Incident Name</th>
             <th>Incident Description</th>
             <th>Incident Priority</th>
@@ -36,6 +41,7 @@ const IncidentTable = ({ incidents, onDelete }) => {
         <tbody>
           {incidents.map((incident) => (
             <tr key={incident.id}>
+              <td>{incident.id}</td>
               <td>{incident.IncidentName}</td>
               <td>{incident.IncidentDescription}</td>
               <td>{incident.IncidentPriority}</td>
@@ -49,7 +55,8 @@ const IncidentTable = ({ incidents, onDelete }) => {
         </tbody>
       </table>
     </div>
+    </div>
   );
 };
 
-export default IncidentTable;
+export default IncidentTableCard;

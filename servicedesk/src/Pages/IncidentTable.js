@@ -1,25 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import supabase from '../config/supabaseClient';
 
-
-
 // Components
+import IncidentTableCard from '../components/IncidentTableCard';
 
-import IncidentTable from '../components/IncidentTable';
-import BarChart from '../components/BarChart';
-import LineChart from '../components/LineChart';
-
-
-
-
-const Home = () => {
+const IncidentTable = () => {
   const [fetchError, setFetchError] = useState(null);
   const [incidentList, setIncidentList] = useState(null);
   const [orderBy, setOrderBy] = useState('IncidentDate');
   const [currentPage, setCurrentPage] = useState(1);
-  const [incidentsPerPage] = useState(3);
-
-
+  const [incidentsPerPage] = useState(15);
 
   const handleDelete = (incidentId) => {
     setIncidentList((prevIncidentList) => {
@@ -58,25 +48,6 @@ const Home = () => {
   console.log('IncidentList:', incidentList);
   console.log('Current orderBy:', orderBy);
 
-  const countIncidentsByStatusAndPriority = (data, status, priority) => {//data is the incidentList
-    return data.filter(//filter is a function that takes a function as an argument
-      (incident) =>//incident is the argument of the function that filter takes
-        incident.IncidentStatus === status &&
-        incident.IncidentPriority === priority
-    ).length;
-  };
-console.log('countIncidentsByStatusAndPriority:', countIncidentsByStatusAndPriority);
-
-  const priorityLevels = ['Low', 'Medium', 'High', 'Critical'];
-  const openCountsByPriority = priorityLevels.map((priority) =>
-    incidentList  ? countIncidentsByStatusAndPriority(incidentList, 'Open', priority) : 0
-  );
-  const closedCountsByPriority = priorityLevels.map((priority) =>
-    incidentList ? countIncidentsByStatusAndPriority(incidentList, 'Closed', priority) : 0
-  );
-
-  console.log('openCountsByPriority:', openCountsByPriority);
-
   // Calculate the number of pages needed
   const totalPages = Math.ceil(incidentList?.length / incidentsPerPage);
 
@@ -95,61 +66,20 @@ console.log('countIncidentsByStatusAndPriority:', countIncidentsByStatusAndPrior
   : [];
   console.log('Current Incidents:', currentIncidents);
 
-  const BarData = {
-    labels: priorityLevels,
-    datasets: [
-      {
-        label: 'Open Incidents',
-        data: openCountsByPriority,
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
-      },
-      {
-        label: 'Closed Incidents',
-        data: closedCountsByPriority,
-        backgroundColor: 'rgba(255, 99, 132, 0.6)',
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 1,
-      },
-    ],
-  };
-  const LineData = {
-    labels: priorityLevels,
-    datasets: [
-      {
-        label: 'Open Incidents',
-        data: openCountsByPriority,
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
-      },
-      {
-        label: 'Closed Incidents',
-        data: closedCountsByPriority,
-        backgroundColor: 'rgba(255, 99, 132, 0.6)',
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 1,
-      },
-    ],
-  };
-  console.log('BarData:', BarData);
-console.log('LineData:', LineData);
-console.log('Rendering BarChart with data:', BarData);
-  
-
   return (
-    <div className="home">
+
+    <div className="IncidentTable">
       {fetchError && <p>{fetchError}</p>}
       {incidentList && (
         <div className="IncidentList">
           <div className="order-by">
             <p>Order by:</p>
+            <button onClick={() => setOrderBy('id')}>ID</button>
             <button onClick={() => setOrderBy('IncidentDate')}>Date</button>
             <button onClick={() => setOrderBy('IncidentPriority')}>Priority</button>
             <button onClick={() => setOrderBy('IncidentStatus')}>Status</button>
           </div>
-          <IncidentTable incidents={currentIncidents} onDelete={handleDelete} />
+          <IncidentTableCard incidents={currentIncidents} onDelete={handleDelete} />
         </div>
       )}
       <div className="pagination">
@@ -167,14 +97,10 @@ console.log('Rendering BarChart with data:', BarData);
           Next
         </button>
       </div>
-      <div className="content">
-        <div className="charts">
-          <BarChart data={BarData} />
-          <LineChart data={LineData} />
-        </div>
+   
       </div>
-    </div>
+   
   );
 };
 
-export default Home;
+export default IncidentTable;

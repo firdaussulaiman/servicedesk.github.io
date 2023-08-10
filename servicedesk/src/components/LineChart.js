@@ -1,12 +1,18 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 
-const LineChartComponent = ({ data }) => {
+
+const LineChart = ({ data }) => {
   return (
-    <div style={{ width: 700 }}>
-      <Line data={data} options={{ scales: { y: { beginAtZero: true } } }} />
+    <div className="LineChart">
+    <div style={{ width: 1000 }}>
+      <Line
+        data={data}
+        options={{ scales: { y: { beginAtZero: true } } }}
+      />
     </div>
-  );
+  </div>
+);
 };
 
-export default LineChartComponent;
+export default LineChart;

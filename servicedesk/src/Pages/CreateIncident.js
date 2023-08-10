@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useNavigate }   from 'react-router-dom';
 import supabase from '../config/supabaseClient';
+import NavBar from './NavBar';
 
 
 const CreateIncident = () => {
@@ -40,6 +41,8 @@ const [formErrors, setFormErrors] = useState(null);
     
 return (
         <div className="create">
+
+<NavBar />      
             <h2>Create Incident</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor='incident'>Incident Name:</label>
