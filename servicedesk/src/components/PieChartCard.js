@@ -1,11 +1,11 @@
 import React from 'react';
-import { Pie} from 'react-chartjs-2';
+import { Doughnut} from 'react-chartjs-2';
 
-const PieChartCard = ({ data }) => {
+const DoughnutChartCard = ({ data }) => {
   return (
-    <div className="BarChart">
+    <div className="Doughnutchart">
       <div style={{ width: 700 }}>
-        <Pie
+        <Doughnut
           data={data}
           options={{ scales: { y: { beginAtZero: true } } }}
         />
@@ -14,4 +14,4 @@ const PieChartCard = ({ data }) => {
   );
 };
 
-export default PieChartCard;
+export default DoughnutChartCard ;

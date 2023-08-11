@@ -1,6 +1,7 @@
 import {useParams ,useNavigate} from "react-router-dom";
 import {useEffect, useState} from 'react';
 import supabase from "../config/supabaseClient"
+import NavBar from "./NavBar.jsx";
 
 const UpdateIncident = () => {
     const {id} = useParams();
@@ -36,7 +37,7 @@ const handleSubmit = async(e) => {
         console.log(data);
         setFormErrors(null);
         console.log('Incident updated successfully');
-        navigate('/');
+        navigate('/home');
     }
 }
     
@@ -50,7 +51,7 @@ const handleSubmit = async(e) => {
             console.log('Data:', data);
 
             if (error) {
-                navigate('/',{replace:true});
+                navigate("/home",{replace:true});
             }
             if(data) {
                 console.log(data);
@@ -69,7 +70,11 @@ const handleSubmit = async(e) => {
 
 
     return (
-        <div className="Incident Update">
+        <div>
+        <NavBar/>
+       
+        <div className="Incident-Update">
+        <h2>Update Incident</h2>
             <form onSubmit = {handleSubmit} >
                 <label htmlFor='incident'>Incident Name:</label>
                 <input 
@@ -78,12 +83,14 @@ const handleSubmit = async(e) => {
                 value={IncidentName}
                 onChange={(e) => setIncidentName(e.target.value)}
                 />
+
                 <label htmlFor='IncidentDescription'>Incident Description:</label>
                 <input 
                 type="text"
                 id="IncidentDescription"
                 value={IncidentDescription}
                 onChange={(e) => setIncidentDescription(e.target.value)}
+                style={{ height: '100px' }} 
                 />
                 <label htmlFor='IncidentPriority'>Incident Priority:</label>
                 <select
@@ -119,7 +126,7 @@ const handleSubmit = async(e) => {
                 {formErrors && <p className="error">{formErrors}</p>}
                
             </form>
-
+ </div>
         </div>
     )
     }

@@ -17,7 +17,7 @@ const NavBar = () => {
       </nav>
 
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/home/*" element={<Home />} />
         <Route path="/create" element={<CreateIncident />} />
         <Route path="/:id" element={<UpdateIncident />} />
         <Route path="/IncidentTable" element={<IncidentTable />} />

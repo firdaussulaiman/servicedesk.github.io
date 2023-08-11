@@ -7,7 +7,7 @@ const LandingPage = () => {
   const [name, setName] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     navigate(`/home?name=${encodeURIComponent(name)}`);
@@ -15,9 +15,12 @@ const LandingPage = () => {
   };
 
   return (
+    <div className="landing-page-centered" style={{ border: '2px solid black' }}>
     <div className="landing-page">
       <h2>Welcome to the Incident Management System</h2>
-      <p>Please enter your name to continue:</p>
+      <div className="centered">
+        <p>Please enter your name</p>
+      </div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -26,9 +29,11 @@ const LandingPage = () => {
           placeholder="Enter your name"
           required
         />
-        <button  type="submit"> Submit </button>
-       
+           <div className="centered">
+        <button type="submit">Submit</button>
+        </div>
       </form>
+     </div>
     </div>
   );
 };

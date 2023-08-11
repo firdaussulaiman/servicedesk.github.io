@@ -81,6 +81,7 @@ form {
   max-width: 480px;
   margin: 0 auto;
   border-radius: 6px;
+  border: 10px solid rgb(48, 48, 54) ;
 }
 form input, form textarea {
   display:block;
@@ -89,6 +90,10 @@ form input, form textarea {
   box-sizing: border-box;
 border:1px solid #ddd;  
 margin: 10px 0 20px;
+border-radius: 6px;
+font-size: 16px;
+border : 1px solid #ddd;
+
 }
 form button {
   background: var(--primary);
@@ -196,21 +201,74 @@ form .success {
   text-align: right;
 }
 
-.home .content {
+/* landing page */
+
+.centered {
+  display: flex;
+  justify-content: center;
+  font-size: 35px;
+  margin-top: 10px; 
+}
+.landing-page-centered {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  
+  min-height: 100vh;
+  background-image: url('./Pages/3273701.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-.home .content .Barcharts {
-  width: 50%;
-  height: 50%;
-  margin: 0 auto;
-  padding: 20px;
+.landing-page {
+  border :10px solid rgb(48, 48, 54) ;
   background: #fff;
-  box-sizing: border-box ;
-  border-radius: 6px;
-  position : relative;
-  border-color: #12bca2;
+  border-radius: 10%;
+  padding: 20px;
+}
+.landing-page :hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+}
+
+.Barcharts {
+  display: flex;
+  align-items: flex-start; 
+}
+
+.chart-column {
+  flex: 1;
+  margin-right: 20px; 
+}
+.PieCharts {
+  display: flex;
+  align-items: flex-start; 
+}
+.chart-column2 {
+  flex: 1;
+  margin-right: 20px; 
+}
+.create {
+  min-height: 100vh;
+  background-image: url('./Pages/3273701.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.create h2 {
+  margin-bottom: 10%;
+}
+.Incident-Update {
+  min-height: 100vh;
+  background-image: url('./Pages/3273701.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.Incident-Update h2 {
+  margin-bottom: 18%;
 }

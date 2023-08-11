@@ -4,7 +4,7 @@ import supabase from '../config/supabaseClient';
 import NavBar from './NavBar';
 
 
-const CreateIncident = () => {
+const CreateIncident = ( ) => {
 const navigate = useNavigate();
 const [IncidentName, setIncidentName] = useState('');
 const [IncidentDescription, setIncidentDescription] = useState('');
@@ -12,6 +12,7 @@ const [IncidentPriority ,setIncidentPriority] = useState('');
 const [IncidentStatus, setIncidentStatus] = useState('');
 const [IncidentDate, setIncidentDate] = useState('');
 const [formErrors, setFormErrors] = useState(null);
+
 
 
     const handleSubmit = async e => {
@@ -43,7 +44,10 @@ return (
         <div className="create">
 
 <NavBar />      
+
+
             <h2>Create Incident</h2>
+
             <form onSubmit={handleSubmit}>
                 <label htmlFor='incident'>Incident Name:</label>
                 <input 
@@ -58,6 +62,7 @@ return (
                 id="IncidentDescription"
                 value={IncidentDescription}
                 onChange={(e) => setIncidentDescription(e.target.value)}
+                style={{ height: '100px' }} 
                 />
                 <label htmlFor='IncidentPriority'>Incident Priority:</label>
                 <select
@@ -92,8 +97,6 @@ return (
                 {formErrors && <p className="error">{formErrors}</p>}
                
             </form>
-
-           
         </div>
     );
 }
